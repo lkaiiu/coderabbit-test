@@ -34,6 +34,13 @@ class TestReverseString:
     def test_string_with_only_whitespace(self):
         assert reverse_string("   ") == "   "
 
+    def test_string_with_newline_characters(self):
+        assert reverse_string("line1\nline2") == "2enil\n1enil"
+
+    def test_non_string_input_raises_type_error(self):
+        with pytest.raises(TypeError):
+            reverse_string(None)
+
 
 class TestCountWords:
     def test_counts_words_in_normal_sentence(self):
@@ -60,6 +67,13 @@ class TestCountWords:
     def test_sentence_with_punctuation_counts_tokens(self):
         assert count_words("Hello, world!") == 2
 
+    def test_return_type_is_int(self):
+        assert isinstance(count_words("hello world"), int)
+
+    def test_non_string_input_raises_attribute_error(self):
+        with pytest.raises(AttributeError):
+            count_words(None)
+
 
 class TestCelsiusToFahrenheit:
     def test_freezing_point_of_water(self):
@@ -82,3 +96,7 @@ class TestCelsiusToFahrenheit:
 
     def test_large_positive_value(self):
         assert celsius_to_fahrenheit(1000) == pytest.approx(1832.0)
+
+    def test_non_numeric_input_raises_type_error(self):
+        with pytest.raises(TypeError):
+            celsius_to_fahrenheit("abc")
